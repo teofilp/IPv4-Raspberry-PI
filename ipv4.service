@@ -1,0 +1,10 @@
+[Unit]
+Description=Get IPV4 Address
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 [path-to-script]/ipv4.py
+
+[Install]
+WantedBy=multi-user.target
