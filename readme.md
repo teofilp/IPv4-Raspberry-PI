@@ -28,10 +28,9 @@ The IPv4 viewer is a small project that let's you determine your Raspberry Pi's 
 
 # Setup
 
-1. Create `systemctl` service file
+1. Create `systemctl` service file (e.g. `ipv4.service`) an place it in `/etc/systemd/system`
 
 ```ini
-ipv4.service
 
 [Unit]
 Description=Get IPV4 Address
@@ -43,4 +42,28 @@ ExecStart=/usr/bin/python3 [path-to-script]/ipv4.py
 
 [Install]
 WantedBy=multi-user.target
+```
+
+2. Once the `.service` file is created, reload the systemd daemon to ensure it picks up the new service file:
+
+```bash
+$ sudo systemctl daemon-reload`
+```
+
+3. Enable the service to start automatically at boot time using the enable command:
+
+```
+$ sudo systemctl enable ipv4.service
+```
+
+4. Start the service using the start command:
+
+```bash
+$ sudo systemctl status ipv4.service
+```
+
+5. Restart the raspberry pi and watch the lcd using:
+
+```
+$ sudo reboot
 ```
